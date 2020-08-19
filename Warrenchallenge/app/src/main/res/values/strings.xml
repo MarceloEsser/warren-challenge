@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Warren challenge</string>
+    <string name="email_hint">E-mail</string>
+    <string name="password_hint">Senha</string>
+    <string name="login">Login</string>
+    <string name="welcome">Bem vind@!</string>
+    <string name="login_button_content_description">Botão para realizar o login</string>
 </resources>
