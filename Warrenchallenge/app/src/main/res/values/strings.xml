@@ -5,4 +5,5 @@
     <string name="login">Login</string>
     <string name="welcome">Bem vind@!</string>
     <string name="login_button_content_description">Botão para realizar o login</string>
+    <string name="close_app_button">Botão para encerrar o aplicativo</string>
 </resources>
