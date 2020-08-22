@@ -1,6 +1,7 @@
 package com.example.warrenchallenge.service
 
 import com.example.warrenchallenge.BuildConfig
+import com.example.warrenchallenge.service.adapter.CallAdapterFactory
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -46,6 +47,7 @@ class NetworkHandler<T> {
         retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
             .baseUrl(BuildConfig.base_url)
+            .addCallAdapterFactory(CallAdapterFactory())
             .client(httpClient())
             .build()
 
