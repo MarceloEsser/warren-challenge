@@ -5,21 +5,33 @@ import com.example.warrenchallenge.service.wrapper.ApiFailureResult
 import com.example.warrenchallenge.service.wrapper.ApiResult
 import com.example.warrenchallenge.service.wrapper.ApiSuccessResult
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.flow.FlowCollector
 
-abstract class NetworkBoundResource<ResultType, RequestType> {
+class NetworkBoundResource<ResultType, RequestType>(
+    private val collector: FlowCollector<Resource<ResultType>>,
+    private val call: Deferred<ApiResult<RequestType>>,
+    private val processResponse: (response: RequestType?) -> ResultType,
+) {
 
-    suspend fun getResult(): Resource<ResultType> {
-        return when (val result = createAsync().await()) {
+    suspend fun build(): NetworkBoundResource<ResultType, RequestType> {
+        collector.emit(Resource.loading())
+        fetchFromNetwork()
+        return this
+    }
 
-            is ApiSuccessResult -> Resource.success(processResponse(result.body))
-
-            is ApiEmptyResult -> Resource.success(null)
-
-            is ApiFailureResult -> Resource.error(null)
+    private suspend fun fetchFromNetwork() {
+        return when (val result = call.await()) {
+            is ApiSuccessResult -> {
+                val process = processResponse(result.body)
+                collector.emit(Resource.success(process))
+            }
+            is ApiEmptyResult -> {
+                collector.emit(Resource.success(null))
+            }
+            is ApiFailureResult -> {
+                collector.emit(Resource.error(result.message))
+            }
         }
     }
 
-    protected abstract fun processResponse(response: RequestType?): ResultType
-
-    protected abstract suspend fun createAsync(): Deferred<ApiResult<RequestType>>
 }

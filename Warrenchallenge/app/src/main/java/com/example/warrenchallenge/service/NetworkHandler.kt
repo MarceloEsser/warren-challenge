@@ -31,8 +31,8 @@ class NetworkHandler<T> {
     private lateinit var retrofit: Retrofit
     private lateinit var okHttpClient: OkHttpClient
 
-    fun build() {
-        retrofitBuilder()
+    fun build(): T {
+        return retrofitBuilder().create(tClass)
     }
 
     private fun getInstance(mclass: Class<T>): NetworkHandler<T> {

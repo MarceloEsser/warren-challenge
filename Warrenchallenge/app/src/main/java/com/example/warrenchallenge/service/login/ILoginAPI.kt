@@ -9,8 +9,8 @@ import retrofit2.http.POST
 
 interface ILoginAPI {
 
-    @POST("/account/login")
-    fun login(
+    @POST("account/login")
+    fun postLogin(
         @Body login: UserLogin
-    ): Deferred<ApiEmptyResult<Any>>
+    ): Deferred<ApiResult<Any>>
 }

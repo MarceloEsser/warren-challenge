@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.View.VISIBLE
 import android.view.WindowManager
 import android.view.animation.*
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.warrenchallenge.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : AppCompatActivity() {
+
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +22,10 @@ class LoginActivity : AppCompatActivity() {
 
         img_btn_close.setOnClickListener {
             finish()
+        }
+
+        btn_login.setOnClickListener {
+            viewModel.doLogin(email_edit_text.text.toString(), password_edit_text.text.toString())
         }
 
         loginFieldsFadeInControl()

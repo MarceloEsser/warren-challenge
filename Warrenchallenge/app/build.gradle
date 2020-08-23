@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "base_url", "\"https://enigmatic-bayou-48219.herokuapp.com/api/v2\""
+        buildConfigField "String", "base_url", "\"https://enigmatic-bayou-48219.herokuapp.com/api/v2/\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -22,6 +22,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
 
     buildTypes {
         release {
@@ -36,6 +41,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:$core_ktx"
     testImplementation "junit:junit:$junit"
+
+    implementation "androidx.activity:activity-ktx:$activity_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha06"
 
     implementation "com.google.android.material:material:$material"
 
