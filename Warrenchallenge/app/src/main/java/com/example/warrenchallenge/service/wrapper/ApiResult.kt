@@ -1,7 +1,5 @@
 package com.example.warrenchallenge.service.wrapper
 
-import com.example.warrenchallenge.Constants
-import org.json.JSONObject
 import retrofit2.Response
 
 sealed class ApiResult<T> {
@@ -22,24 +20,16 @@ sealed class ApiResult<T> {
 
             }
 
-            if (containsMessage(response)) {
-                val jsonObject = getJsonObjectFrom(response)
-                return ApiFailureResult(jsonObject[Constants.Api.message] as? String)
+            val msg = response.errorBody()?.string()
+            val errorMsg = if (msg.isNullOrEmpty()) {
+                response.message()
+            } else {
+                msg
             }
 
-            return ApiFailureResult(Constants.Messages.internalError)
+            return ApiFailureResult(errorMsg ?: "unknown error")
 
         }
-
-        private fun <T> getJsonObjectFrom(response: Response<T>): JSONObject {
-            return JSONObject(
-                response.errorBody()?.charStream()?.readText()
-                    ?: Constants.Messages.internalError
-            )
-        }
-
-        private fun <T> containsMessage(response: Response<T>) =
-            response.errorBody()?.charStream()?.readText()?.contains(Constants.Api.message) ?: false
 
         private fun <T> responseIsNotEmpty(response: Response<T>) =
             response.body() != null && response.code() != 204
