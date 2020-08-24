@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.warrenchallenge.model.UserLogin
+import com.example.warrenchallenge.persistence.SessionManager
 import com.example.warrenchallenge.service.login.LoginService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -16,7 +17,8 @@ class LoginViewModel : ViewModel() {
         val userLogin = UserLogin(email, password)
         viewModelScope.launch(Dispatchers.IO) {
             service.doLogin(userLogin).collect {
-                Log.d("logou", "fez login")
+                SessionManager.accessToken = it.data?.accessToken
+                Log.d("logou", SessionManager.accessToken ?: "sem token")
             }
         }
     }

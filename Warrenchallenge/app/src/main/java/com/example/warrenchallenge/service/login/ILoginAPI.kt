@@ -1,5 +1,6 @@
 package com.example.warrenchallenge.service.login
 
+import com.example.warrenchallenge.model.LoginResponse
 import com.example.warrenchallenge.model.UserLogin
 import com.example.warrenchallenge.service.wrapper.ApiEmptyResult
 import com.example.warrenchallenge.service.wrapper.ApiResult
@@ -12,5 +13,5 @@ interface ILoginAPI {
     @POST("account/login")
     fun postLogin(
         @Body login: UserLogin
-    ): Deferred<ApiResult<Any>>
+    ): Deferred<ApiResult<LoginResponse>>
 }

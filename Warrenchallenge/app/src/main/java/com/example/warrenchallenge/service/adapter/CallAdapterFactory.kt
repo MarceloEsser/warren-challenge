@@ -17,6 +17,7 @@ class CallAdapterFactory : CallAdapter.Factory() {
 
         if (getRawType(returnType) == Deferred::class.java) {
             val parameterUpperBound = getParameterUpperBound(0, returnType as ParameterizedType)
+
             val rawType = getRawType(parameterUpperBound)
 
             if (rawType != ApiResult::class.java)
@@ -26,7 +27,9 @@ class CallAdapterFactory : CallAdapter.Factory() {
                 throw IllegalArgumentException("resource must be parameterized")
 
 
-            return MyCallAdapter<Any>(parameterUpperBound)
+            val bodyType = getParameterUpperBound(0, parameterUpperBound)
+
+            return MyCallAdapter<Any>(bodyType)
         }
         throw IllegalArgumentException("return type must be Deferred")
     }
