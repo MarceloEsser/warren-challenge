@@ -60,7 +60,7 @@ class NetworkHandler<T> {
             .setLenient().create()
     }
 
-    private fun httpClient(): OkHttpClient {
+    fun httpClient(): OkHttpClient {
         okHttpClient = OkHttpClient.Builder()
             .addInterceptor(logginInterceptor)
             .connectTimeout(60, TimeUnit.SECONDS)

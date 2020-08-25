@@ -57,6 +57,15 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
 
+    //Koin Kotlin
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-core-ext:$koin_version"
+
+    //Koin Android
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
+
     implementation "com.airbnb.android:lottie:$lottie"
     implementation "androidx.appcompat:appcompat:$app_compat"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
