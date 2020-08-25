@@ -12,7 +12,9 @@ interface LoginServiceDelegate {
     suspend fun doLogin(userLogin: UserLogin): Flow<Resource<LoginResponse?>>
 }
 
-class LoginService() : LoginServiceDelegate {
+class LoginService(
+
+) : LoginServiceDelegate {
     private val mApi: ILoginAPI = NetworkHandler.getInstance(ILoginAPI::class.java).build()
 
     override suspend fun doLogin(userLogin: UserLogin): Flow<Resource<LoginResponse?>> {
