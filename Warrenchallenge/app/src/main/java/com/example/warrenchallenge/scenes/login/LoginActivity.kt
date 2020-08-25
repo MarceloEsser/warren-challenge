@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginObservableControl() {
-        val loginObservable = Observer<LoginResponse> { loginResponse ->
+        val loginObservable = Observer<LoginResponse> { _ ->
             doLogin()
         }
 

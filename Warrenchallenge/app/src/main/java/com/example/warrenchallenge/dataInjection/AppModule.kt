@@ -1,7 +1,7 @@
 package com.example.warrenchallenge.dataInjection
 
+import com.example.warrenchallenge.persistence.PreferencesManager
 import com.example.warrenchallenge.scenes.login.LoginViewModel
-import com.example.warrenchallenge.service.NetworkHandler
 import com.example.warrenchallenge.service.login.ILoginAPI
 import com.example.warrenchallenge.service.login.LoginService
 import com.example.warrenchallenge.service.login.LoginServiceDelegate
@@ -12,12 +12,17 @@ import org.koin.dsl.module
 val dispatchersModule = module { single { MyDispatcher() } }
 
 val serviceModule = module {
-    single { NetworkHandler.getInstance(ILoginAPI::class.java).build() }
-    single<LoginServiceDelegate> { LoginService() }
+    single { ILoginAPI.api }
+
+    single<LoginServiceDelegate> { LoginService(get()) }
+}
+
+val preferencesModule = module {
+    single { PreferencesManager(get()) }
 }
 
 val viewModelModule = module {
-    viewModel { LoginViewModel(get(), get()) }
+    viewModel { LoginViewModel(get(), get(), get()) }
 }
 
-val appModule = listOf(dispatchersModule, serviceModule, viewModelModule)
+val appModule = listOf(dispatchersModule, serviceModule, viewModelModule, preferencesModule)
