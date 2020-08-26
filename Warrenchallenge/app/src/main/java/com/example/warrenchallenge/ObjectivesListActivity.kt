@@ -11,13 +11,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.math.abs
 
 
-class MainActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener {
+class ObjectivesListActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener {
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
 
     private val adapter: ObjectivesAdapter by lazy {
         ObjectivesAdapter(
-            context = this@MainActivity,
+            context = this@ObjectivesListActivity,
             items = listOf(
                 Model("asdasd", "Disney!", 123.0, 123.0, "20/12/200"),
                 Model("asdasd", "Faculdade...", 123.0, 123.0, "20/12/200"),
