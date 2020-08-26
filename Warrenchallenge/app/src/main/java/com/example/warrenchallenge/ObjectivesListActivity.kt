@@ -52,7 +52,7 @@ class ObjectivesListActivity : AppCompatActivity(), AppBarLayout.OnOffsetChanged
         val sheetLayoutParams = bottomsheet.layoutParams
         val displayMetrics = DisplayMetrics()
 
-        windowManager.defaultDisplay.getMetrics(displayMetrics)
+        this.display?.getRealMetrics(displayMetrics)
         sheetLayoutParams.height = displayMetrics.heightPixels
 
         bottomsheet.layoutParams = sheetLayoutParams

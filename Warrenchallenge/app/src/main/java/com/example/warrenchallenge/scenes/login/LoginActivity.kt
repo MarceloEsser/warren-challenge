@@ -7,6 +7,7 @@ import android.view.WindowManager
 import android.view.animation.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.example.warrenchallenge.ObjectivesListActivity
 import com.example.warrenchallenge.R
 import com.example.warrenchallenge.model.LoginResponse
 import com.example.warrenchallenge.scenes.MainActivity
@@ -91,6 +92,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun doLogin() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, ObjectivesListActivity::class.java))
     }
 }
