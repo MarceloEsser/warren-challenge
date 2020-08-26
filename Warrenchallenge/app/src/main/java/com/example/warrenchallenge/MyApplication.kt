@@ -1,12 +1,19 @@
 package com.example.warrenchallenge
 
 import android.app.Application
-import com.example.warrenchallenge.persistence.PreferencesManager
+import com.example.warrenchallenge.dataInjection.appModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 
 class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        PreferencesManager.initialize(this)
+        startKoin {
+//            androidLogger()
+            androidContext(this@MyApplication)
+            modules(appModule)
+        }
     }
 }

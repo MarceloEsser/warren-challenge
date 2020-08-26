@@ -1,13 +1,16 @@
 package com.example.warrenchallenge.persistence
 
 import android.content.Context
-import android.content.SharedPreferences
 import com.example.warrenchallenge.BuildConfig
 import com.google.gson.Gson
 
-object PreferencesManager {
+class PreferencesManager(
+    context: Context,
+) {
+    private val sharedPreferences =
+        context.getSharedPreferences(BuildConfig.preferences_key, Context.MODE_PRIVATE)
 
-    var _accessToken: String?
+    var accessToken: String?
         get() {
             return "token".load()
         }
@@ -15,21 +18,14 @@ object PreferencesManager {
             "token".save(value)
         }
 
-    private lateinit var sharedPreferences: SharedPreferences
-
-    fun initialize(context: Context) {
-        sharedPreferences =
-            context.getSharedPreferences(BuildConfig.preferences_key, Context.MODE_PRIVATE)
-    }
-
     private fun String.load(): String? {
-        if (!::sharedPreferences.isInitialized)
+        if (sharedPreferences == null)
             throw RuntimeException("PreferencesManager should be initialized")
         return sharedPreferences.getString(this, null)
     }
 
     private fun String.save(value: Any?) {
-        if (!::sharedPreferences.isInitialized)
+        if (sharedPreferences == null)
             throw RuntimeException("PreferencesManager should be initialized")
         val editor = sharedPreferences.edit()
         when (value) {
