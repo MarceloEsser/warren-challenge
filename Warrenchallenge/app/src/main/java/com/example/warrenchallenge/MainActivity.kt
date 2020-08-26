@@ -5,7 +5,6 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.activity_main.*
@@ -67,7 +66,7 @@ class MainActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener {
         val llPeekLayoutParams = constraintLayout.layoutParams
         val height = llPeekLayoutParams.height
 
-        bottomSheetBehavior?.addBottomSheetCallback(object :
+        bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
