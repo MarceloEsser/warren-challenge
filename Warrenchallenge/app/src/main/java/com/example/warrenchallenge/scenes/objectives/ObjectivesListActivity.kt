@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.example.warrenchallenge.Model
-import com.example.warrenchallenge.ObjectivesAdapter
+import com.example.warrenchallenge.model.Objective
+import com.example.warrenchallenge.adapter.ObjectivesAdapter
 import com.example.warrenchallenge.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_objectives.*
 import kotlin.math.abs
 
 
@@ -22,18 +22,18 @@ class ObjectivesListActivity : AppCompatActivity() {
         ObjectivesAdapter(
             context = this@ObjectivesListActivity,
             items = listOf(
-                Model("asdasd", "Disney!", 123.0, 123.0, "20/12/200"),
-                Model("asdasd", "Faculdade...", 123.0, 123.0, "20/12/200"),
-                Model("asdasd", "Sei la maluco", 123.0, 123.0, "20/12/200"),
-                Model("asdasd", "asfsdf", 123.0, 123.0, "20/12/200"),
-                Model("asdasd", "asfsdf", 123.0, 123.0, "20/12/200"),
+                Objective("asdasd", "Disney!", 123.0, 123.0, "20/12/200"),
+                Objective("asdasd", "Faculdade...", 123.0, 123.0, "20/12/200"),
+                Objective("asdasd", "Sei la maluco", 123.0, 123.0, "20/12/200"),
+                Objective("asdasd", "asfsdf", 123.0, 123.0, "20/12/200"),
+                Objective("asdasd", "asfsdf", 123.0, 123.0, "20/12/200"),
             )
         )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_objectives)
 
         configBottomSheet()
 
@@ -43,15 +43,15 @@ class ObjectivesListActivity : AppCompatActivity() {
 
     private fun configBottomSheet() {
 
-        mBottomSheetBehavior = BottomSheetBehavior.from(bottomsheet)
+        mBottomSheetBehavior = BottomSheetBehavior.from(ll_bottom_sheet)
 
-        val layoutParams = bottomsheet.layoutParams
+        val layoutParams = ll_bottom_sheet.layoutParams
         val displayMetrics = DisplayMetrics()
 
         this.display?.getRealMetrics(displayMetrics)
         layoutParams.height = displayMetrics.heightPixels
 
-        bottomsheet.layoutParams = layoutParams
+        ll_bottom_sheet.layoutParams = layoutParams
 
         bottomSheetCallBack()
 
@@ -59,7 +59,7 @@ class ObjectivesListActivity : AppCompatActivity() {
 
     private fun bottomSheetCallBack() {
 
-        val layoutParams = constraintLayout.layoutParams
+        val layoutParams = cl_header_content.layoutParams
         val height = layoutParams.height
 
         mBottomSheetBehavior.addBottomSheetCallback(object :
@@ -81,7 +81,7 @@ class ObjectivesListActivity : AppCompatActivity() {
     ) {
         layoutParams.height = intOffSet
         tv_title.alpha = (1 - (slideOffset))
-        ll_visible_content.alpha = (1 - (slideOffset))
-        constraintLayout.layoutParams = layoutParams
+        ll_income_content.alpha = (1 - (slideOffset))
+        cl_header_content.layoutParams = layoutParams
     }
 }

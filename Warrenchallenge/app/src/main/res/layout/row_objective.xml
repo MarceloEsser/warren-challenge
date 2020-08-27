@@ -2,6 +2,7 @@
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/RowObjectiveStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -51,7 +52,7 @@
             android:elevation="2dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="Disney!"
+            tools:text="Disney!"
             style="@style/TitleStyle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +68,7 @@
             android:elevation="2dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="R$ 500,00"
+            tools:text="R$ 500,00"
             style="@style/MediumTitleStyle"
             app:layout_constraintTop_toBottomOf="@id/tv_objective_name"
             app:layout_constraintStart_toStartOf="parent" />

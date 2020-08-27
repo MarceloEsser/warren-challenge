@@ -9,7 +9,7 @@
     tools:context=".scenes.objectives.ObjectivesListActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/cl_header_content"
         android:layout_width="match_parent"
         android:layout_height="260dp"
         android:background="@drawable/gradient_background">
@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:id="@+id/ll_visible_content"
+            android:id="@+id/ll_income_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -39,11 +39,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tv_income_title"
                 style="@style/SubTitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saldo e rendimentos Bruto" />
+                android:text="@string/balance_and_income" />
 
             <TextView
                 android:id="@+id/tv_amount"
@@ -51,12 +51,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="R$ 1234324,00" />
+                tools:text="R$ 1234324,00" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/bottomsheet"
+        android:id="@+id/ll_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="20dp"

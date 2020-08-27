@@ -1,4 +1,4 @@
-package com.example.warrenchallenge.service.adapter
+package com.example.warrenchallenge.service.callAdapter
 
 import com.example.warrenchallenge.service.wrapper.ApiResult
 import kotlinx.coroutines.CompletableDeferred

@@ -4,10 +4,8 @@ import com.example.warrenchallenge.BuildConfig
 import com.example.warrenchallenge.model.LoginResponse
 import com.example.warrenchallenge.model.UserLogin
 import com.example.warrenchallenge.service.NetworkHandler
-import com.example.warrenchallenge.service.adapter.CallAdapterFactory
-import com.example.warrenchallenge.service.wrapper.ApiEmptyResult
+import com.example.warrenchallenge.service.callAdapter.CallAdapterFactory
 import com.example.warrenchallenge.service.wrapper.ApiResult
-import com.google.gson.Gson
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -1,14 +1,16 @@
-package com.example.warrenchallenge
+package com.example.warrenchallenge.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.warrenchallenge.R
+import com.example.warrenchallenge.model.Objective
 import kotlinx.android.synthetic.main.row_objective.view.*
 
 class ObjectivesAdapter(
-    private val items: List<Model>,
+    private val items: List<Objective>,
     private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -20,8 +22,8 @@ class ObjectivesAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = items[position]
         with(holder as MyViewHolder) {
-            tvText1.setText(model.name)
-            tvText2.setText(model.totalBalance.toString())
+            tvObjectiveName.text = model.name
+            tvObjectiveAmount.text = model.totalBalance.toString()
         }
     }
 
@@ -30,7 +32,7 @@ class ObjectivesAdapter(
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvText1 = itemView.tv_objective_name
-        val tvText2 = itemView.tv_objective_amount
+        val tvObjectiveName = itemView.tv_objective_name
+        val tvObjectiveAmount = itemView.tv_objective_amount
     }
 }

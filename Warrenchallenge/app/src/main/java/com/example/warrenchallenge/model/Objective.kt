@@ -1,6 +1,6 @@
-package com.example.warrenchallenge
+package com.example.warrenchallenge.model
 
-class Model(
+class Objective(
     val id: String,
     val name: String,
     val totalBalance: Double,
