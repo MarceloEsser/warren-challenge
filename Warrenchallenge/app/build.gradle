@@ -64,7 +64,6 @@ dependencies {
 
     implementation "com.github.bumptech.glide:glide:4.11.0"
 
-    implementation "com.airbnb.android:lottie:$lottie"
     implementation "androidx.appcompat:appcompat:$app_compat"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
     implementation "com.android.support:recyclerview-v7:$android_support"
