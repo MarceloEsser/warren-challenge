@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.warrenchallenge.R
-import com.example.warrenchallenge.model.Objective
+import com.example.warrenchallenge.model.objective.Objective
 import kotlinx.android.synthetic.main.row_objective.view.*
 
 class ObjectivesAdapter(

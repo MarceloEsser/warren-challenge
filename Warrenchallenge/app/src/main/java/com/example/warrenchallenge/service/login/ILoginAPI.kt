@@ -1,8 +1,8 @@
 package com.example.warrenchallenge.service.login
 
 import com.example.warrenchallenge.BuildConfig
-import com.example.warrenchallenge.model.LoginResponse
-import com.example.warrenchallenge.model.UserLogin
+import com.example.warrenchallenge.model.login.LoginResponse
+import com.example.warrenchallenge.model.login.UserLogin
 import com.example.warrenchallenge.service.NetworkHandler
 import com.example.warrenchallenge.service.callAdapter.CallAdapterFactory
 import com.example.warrenchallenge.service.wrapper.ApiResult

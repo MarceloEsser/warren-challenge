@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.example.warrenchallenge.model.Objective
+import androidx.lifecycle.Observer
+import com.example.warrenchallenge.model.objective.Objective
 import com.example.warrenchallenge.adapter.ObjectivesAdapter
 import com.example.warrenchallenge.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.activity_objectives.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
 
@@ -18,18 +20,10 @@ class ObjectivesListActivity : AppCompatActivity() {
 
     private lateinit var mBottomSheetBehavior: BottomSheetBehavior<LinearLayout>
 
-    private val adapter: ObjectivesAdapter by lazy {
-        ObjectivesAdapter(
-            context = this@ObjectivesListActivity,
-            items = listOf(
-                Objective("asdasd", "Disney!", 123.0, 123.0, "20/12/200"),
-                Objective("asdasd", "Faculdade...", 123.0, 123.0, "20/12/200"),
-                Objective("asdasd", "Sei la maluco", 123.0, 123.0, "20/12/200"),
-                Objective("asdasd", "asfsdf", 123.0, 123.0, "20/12/200"),
-                Objective("asdasd", "asfsdf", 123.0, 123.0, "20/12/200"),
-            )
-        )
-    }
+    private val viewModel: ObjectivesViewModel by viewModel()
+
+    private lateinit var adapter: ObjectivesAdapter
+    private val activitContext = this@ObjectivesListActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +31,19 @@ class ObjectivesListActivity : AppCompatActivity() {
 
         configBottomSheet()
 
-        rv_objectives.adapter = adapter
+        viewModel.loadObjectives()
 
+        objectivesSetup()
+
+    }
+
+    private fun objectivesSetup() {
+        val objectivesObserver = Observer<List<Objective>> {
+            adapter = ObjectivesAdapter(it, activitContext)
+            rv_objectives.adapter = adapter
+        }
+
+        viewModel.objectivesList.observe(activitContext, objectivesObserver)
     }
 
     private fun configBottomSheet() {

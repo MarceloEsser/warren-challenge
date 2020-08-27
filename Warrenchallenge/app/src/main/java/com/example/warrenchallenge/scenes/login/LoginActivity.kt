@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.warrenchallenge.scenes.objectives.ObjectivesListActivity
 import com.example.warrenchallenge.R
-import com.example.warrenchallenge.model.LoginResponse
+import com.example.warrenchallenge.model.login.LoginResponse
 import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

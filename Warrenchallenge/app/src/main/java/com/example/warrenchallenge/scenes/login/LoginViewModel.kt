@@ -3,8 +3,8 @@ package com.example.warrenchallenge.scenes.login
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.warrenchallenge.model.LoginResponse
-import com.example.warrenchallenge.model.UserLogin
+import com.example.warrenchallenge.model.login.LoginResponse
+import com.example.warrenchallenge.model.login.UserLogin
 import com.example.warrenchallenge.persistence.PreferencesManager
 import com.example.warrenchallenge.service.login.LoginServiceDelegate
 import com.example.warrenchallenge.util.MyDispatcher

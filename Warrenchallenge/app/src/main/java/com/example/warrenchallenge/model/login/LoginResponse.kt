@@ -1,4 +1,4 @@
-package com.example.warrenchallenge.model
+package com.example.warrenchallenge.model.login
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

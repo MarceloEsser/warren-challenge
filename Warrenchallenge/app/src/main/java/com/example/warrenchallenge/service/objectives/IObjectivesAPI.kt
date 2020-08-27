@@ -1,7 +1,8 @@
 package com.example.warrenchallenge.service.objectives
 
 import com.example.warrenchallenge.BuildConfig
-import com.example.warrenchallenge.model.Objective
+import com.example.warrenchallenge.model.objective.Objective
+import com.example.warrenchallenge.model.objective.ObjectiveResponse
 import com.example.warrenchallenge.service.NetworkHandler
 import com.example.warrenchallenge.service.callAdapter.CallAdapterFactory
 import com.example.warrenchallenge.service.wrapper.ApiResult
@@ -27,6 +28,6 @@ interface IObjectivesAPI {
 
     @GET("portfolios/mine")
     fun getObjectives(
-        @Header("access_token") accessToken: String
-    ): Deferred<ApiResult<List<Objective>>>
+        @Header("access-token") accessToken: String
+    ): Deferred<ApiResult<ObjectiveResponse>>
 }
