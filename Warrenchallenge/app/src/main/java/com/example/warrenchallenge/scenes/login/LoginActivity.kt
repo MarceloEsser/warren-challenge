@@ -47,13 +47,8 @@ class LoginActivity : BaseActivity() {
         viewModel.loginResponse.observe(this, loginObservable)
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        lottieControl()
-    }
-
     private fun loginFieldsFadeInControl() {
+        ll_login_fields.visibility = VISIBLE
         val set = AnimationSet(true)
 
         var animation: Animation = AlphaAnimation(0.0f, 1.0f)
@@ -70,26 +65,6 @@ class LoginActivity : BaseActivity() {
 
         val controller = LayoutAnimationController(set, 0.5f)
         ll_login_fields.layoutAnimation = controller
-    }
-
-    private fun lottieControl() {
-        lav_money_animation.addAnimatorUpdateListener { animator ->
-
-            val progress = (animator.animatedValue as Float * 100).toInt()
-            lav_money_animation.speed = 1.5f
-
-            if (progress > 40) {
-                lav_money_animation.pauseAnimation()
-                isToDoLoginAgain()
-            }
-        }
-    }
-
-    private fun isToDoLoginAgain() {
-        if (!viewModel.isUserLoged)
-            ll_login_fields.visibility = VISIBLE
-        else
-            doLogin()
     }
 
     private fun doLogin() {
