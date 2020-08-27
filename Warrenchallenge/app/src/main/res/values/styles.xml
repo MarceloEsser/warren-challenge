@@ -2,10 +2,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:statusBarColor">#007c91</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/red</item>
     </style>
 
     <style name="RowObjectiveStyle">
@@ -48,6 +48,12 @@
         <item name="android:textSize">28sp</item>
     </style>
 
+    <style name="BlackTitleStyle">
+        <item name="android:fontFamily">@font/balootammabold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+
     <style name="MediumTitleStyle">
         <item name="android:fontFamily">@font/balootammamedium</item>
         <item name="android:textColor">@color/white</item>
@@ -57,6 +63,12 @@
     <style name="SubTitleStyle">
         <item name="android:fontFamily">@font/balootammaegular</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="BlackSubTitleStyle">
+        <item name="android:fontFamily">@font/balootammaegular</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
     </style>
 

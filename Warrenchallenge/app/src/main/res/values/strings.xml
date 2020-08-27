@@ -9,4 +9,5 @@
     <string name="close_app_button">Botão para encerrar o aplicativo</string>
     <string name="internal_error">Ocorreu um erro interno, por favor tente novamente mais tarde</string>
     <string name="balance_and_income">Saldo e rendimentos Bruto</string>
+    <string name="withtout_items">Não encontramos nem uma carteira :c</string>
 </resources>

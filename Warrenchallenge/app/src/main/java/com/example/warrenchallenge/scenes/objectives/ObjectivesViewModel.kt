@@ -18,11 +18,18 @@ class ObjectivesViewModel(
 
     val objectivesList: MutableLiveData<List<Objective>> = MutableLiveData()
 
+    var totaIncome: Double = 0.0
+
     fun loadObjectives() {
         viewModelScope.launch(dispatcher.IO) {
             service.getObjectives(preferences.accessToken ?: "").collect { resource ->
 
                 if (resource.data?.objectives != null) {
+
+                    resource.data.objectives.forEach {
+                        totaIncome += it.totalBalance
+                    }
+
                     objectivesList.postValue(resource.data.objectives)
                 }
             }

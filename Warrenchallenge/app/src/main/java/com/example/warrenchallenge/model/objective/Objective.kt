@@ -12,5 +12,7 @@ class Objective(
     @SerializedName("goalAmount")
     val goalAmount: Double,
     @SerializedName("goalDate")
-    val goalDate: String
+    val goalDate: String,
+    @SerializedName("background")
+    val background: ObjectiveBackground
 )

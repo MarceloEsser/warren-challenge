@@ -62,6 +62,8 @@ dependencies {
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
+    implementation "com.github.bumptech.glide:glide:4.11.0"
+
     implementation "com.airbnb.android:lottie:$lottie"
     implementation "androidx.appcompat:appcompat:$app_compat"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"

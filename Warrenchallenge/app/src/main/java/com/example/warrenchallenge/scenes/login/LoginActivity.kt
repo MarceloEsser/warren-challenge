@@ -5,16 +5,16 @@ import android.os.Bundle
 import android.view.View.VISIBLE
 import android.view.WindowManager
 import android.view.animation.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.warrenchallenge.scenes.objectives.ObjectivesListActivity
 import com.example.warrenchallenge.R
 import com.example.warrenchallenge.model.login.LoginResponse
+import com.example.warrenchallenge.scenes.BaseActivity
+import com.example.warrenchallenge.scenes.objectives.ObjectivesListActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private val viewModel: LoginViewModel by viewModel()
 
@@ -29,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_login.setOnClickListener {
+            showLoader()
             viewModel.doLogin(email_edit_text.text.toString(), password_edit_text.text.toString())
         }
 
@@ -39,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginObservableControl() {
         val loginObservable = Observer<LoginResponse> { _ ->
+            hideLoader()
             doLogin()
         }
 
