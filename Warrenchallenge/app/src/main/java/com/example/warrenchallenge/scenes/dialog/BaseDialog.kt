@@ -10,8 +10,8 @@ import androidx.fragment.app.DialogFragment
 
 abstract class BaseDialog(
     private val layout: Int,
-    private val height: Int = ViewGroup.LayoutParams.WRAP_CONTENT,
-    private val width: Int = ViewGroup.LayoutParams.MATCH_PARENT,
+    private val height: Int? = null,
+    private val width: Int? = null,
     private val gravity: Int = Gravity.CENTER,
     private val backgroundColor: Int = Color.TRANSPARENT
 ) : DialogFragment() {
@@ -34,8 +34,10 @@ abstract class BaseDialog(
 
     private fun setupDialog(dialog: Dialog?) {
         dialog?.run {
-            window?.attributes?.height = height
-            window?.attributes?.width = width
+            if (height != null)
+                window?.attributes?.height = height
+            if (width != null)
+                window?.attributes?.width = width
             window?.setGravity(gravity)
             window?.setBackgroundDrawable(ColorDrawable(backgroundColor));
         }

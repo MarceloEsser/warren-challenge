@@ -25,7 +25,6 @@ class ObjectivesListActivity : BaseActivity() {
     private lateinit var mBottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     private val viewModel: ObjectivesViewModel by viewModel()
-    lateinit var coordinatorLayout: CoordinatorLayout
 
     private lateinit var adapter: ObjectivesAdapter
     private val activitContext = this@ObjectivesListActivity
@@ -34,34 +33,47 @@ class ObjectivesListActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_objectives)
 
+        successConfiguration()
+        errorConfiguration()
+
         showLoader()
         viewModel.loadObjectives()
-        coordinatorLayout = coordinator_layout
-
-        objectivesSetup()
 
     }
 
-    private fun objectivesSetup() {
+    private fun successConfiguration() {
         val objectivesObserver = Observer<List<Objective>> {
-
-            if (it.isNotEmpty()) {
-                configAdapter(it)
-                configBottomSheet()
-            } else {
-                tv_without_items.visibility = VISIBLE
-                cl_bottom_sheet.visibility = GONE
-            }
-
-            tv_amount.text = viewModel.totaIncome.brazillianCurrency()
-            hideLoader()
+            screenSetup()
         }
 
         viewModel.objectivesList.observe(activitContext, objectivesObserver)
     }
 
-    private fun configAdapter(it: List<Objective>) {
-        adapter = ObjectivesAdapter(it, activitContext)
+    private fun screenSetup() {
+        tv_amount.text = viewModel.totaIncome.brazillianCurrency()
+
+        if (viewModel.hasObjectives) {
+            configAdapter(viewModel.objectivesList.value ?: listOf())
+            configBottomSheet()
+        } else {
+            tv_without_items.visibility = VISIBLE
+            cl_bottom_sheet.visibility = GONE
+        }
+
+        hideLoader()
+    }
+
+    private fun errorConfiguration() {
+        val errorMessageObserver = Observer<String> {
+            screenSetup()
+            showErrorDialog(message = it)
+        }
+
+        viewModel.errorMessage.observe(this, errorMessageObserver)
+    }
+
+    private fun configAdapter(objectives: List<Objective>) {
+        adapter = ObjectivesAdapter(objectives, activitContext)
         rv_objectives.adapter = adapter
     }
 

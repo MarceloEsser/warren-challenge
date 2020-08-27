@@ -10,4 +10,5 @@
     <string name="internal_error">Ocorreu um erro interno, por favor tente novamente mais tarde</string>
     <string name="balance_and_income">Saldo e rendimentos Bruto</string>
     <string name="withtout_items">Não encontramos nem uma carteira :c</string>
+    <string name="ok">ok</string>
 </resources>
