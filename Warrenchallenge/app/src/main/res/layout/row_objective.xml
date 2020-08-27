@@ -52,8 +52,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="Disney!"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
+            style="@style/TitleStyle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -69,8 +68,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="R$ 500,00"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
+            style="@style/MediumTitleStyle"
             app:layout_constraintTop_toBottomOf="@id/tv_objective_name"
             app:layout_constraintStart_toStartOf="parent" />
 

@@ -44,11 +44,10 @@ dependencies {
     testImplementation "junit:junit:$junit"
 
     implementation "androidx.activity:activity-ktx:$activity_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha06"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$view_model"
 
     implementation "com.google.android.material:material:$material"
 
-    //Retrofit and api things
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.okhttp3:okhttp:$logging_interceptor"
@@ -57,18 +56,16 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
 
-    //Koin Kotlin
     implementation "org.koin:koin-core:$koin_version"
     implementation "org.koin:koin-core-ext:$koin_version"
 
-    //Koin Android
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
     implementation "com.airbnb.android:lottie:$lottie"
     implementation "androidx.appcompat:appcompat:$app_compat"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation "com.android.support:recyclerview-v7:$android_support"
+    implementation "com.android.support:cardview-v7:$android_support"
 
 }

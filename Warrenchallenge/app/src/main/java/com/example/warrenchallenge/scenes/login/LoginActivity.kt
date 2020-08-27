@@ -7,10 +7,9 @@ import android.view.WindowManager
 import android.view.animation.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.warrenchallenge.ObjectivesListActivity
+import com.example.warrenchallenge.scenes.objectives.ObjectivesListActivity
 import com.example.warrenchallenge.R
 import com.example.warrenchallenge.model.LoginResponse
-import com.example.warrenchallenge.scenes.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        this.window.setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         img_btn_close.setOnClickListener {
             finish()
@@ -93,5 +92,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun doLogin() {
         startActivity(Intent(this, ObjectivesListActivity::class.java))
+        finish()
     }
 }

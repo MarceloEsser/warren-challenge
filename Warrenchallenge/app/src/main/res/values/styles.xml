@@ -18,11 +18,6 @@
         <item name="android:layout_marginBottom">20dp</item>
     </style>
 
-    <style name="TextAppearance.App.CollapsingToolbar.Expanded" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="android:textColor">@android:color/transparent</item>
-    </style>
-
-
     <style name="TextInputEditTextStyle">
         <item name="android:textCursorDrawable">@drawable/text_cursor_drawable</item>
         <item name="android:layout_height">50dp</item>
@@ -52,4 +47,18 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">28sp</item>
     </style>
+
+    <style name="MediumTitleStyle">
+        <item name="android:fontFamily">@font/balootammamedium</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="SubTitleStyle">
+        <item name="android:fontFamily">@font/balootammaegular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
 </resources>
