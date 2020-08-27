@@ -22,7 +22,7 @@ class SplashActivity : BaseActivity() {
 
     private fun start() {
         GlobalScope.launch {
-            delay(2000)
+            delay(1500)
 
             if (PreferencesManager(this@SplashActivity).accessToken != null) {
                 startActivity(Intent(this@SplashActivity, ObjectivesListActivity::class.java))
