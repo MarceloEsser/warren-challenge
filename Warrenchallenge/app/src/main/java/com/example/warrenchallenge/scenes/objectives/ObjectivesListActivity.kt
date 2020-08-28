@@ -39,6 +39,10 @@ class ObjectivesListActivity : BaseActivity() {
         showLoader()
         viewModel.loadObjectives()
 
+        img_btn_close.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun successConfiguration() {
@@ -90,11 +94,6 @@ class ObjectivesListActivity : BaseActivity() {
         cl_bottom_sheet.layoutParams = layoutParams
 
         bottomSheetCallBack()
-
-        img_btn_close.setOnClickListener {
-            finish()
-        }
-
     }
 
     private fun bottomSheetCallBack() {

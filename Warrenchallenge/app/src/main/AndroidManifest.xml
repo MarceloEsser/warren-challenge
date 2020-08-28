@@ -21,7 +21,7 @@
         </activity>
 
         <activity android:name=".scenes.objectives.ObjectivesListActivity" />
-        <activity android:name=".scenes.login.LoginActivity"></activity>
+        <activity android:name=".scenes.login.LoginActivity"/>
     </application>
 
 </manifest>
