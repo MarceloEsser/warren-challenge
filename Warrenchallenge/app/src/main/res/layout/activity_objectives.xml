@@ -2,43 +2,36 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:id="@+id/coordinator_layout"
     tools:context=".scenes.objectives.ObjectivesListActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_header_content"
         android:layout_width="match_parent"
         android:layout_height="260dp"
-        android:background="@drawable/gradient_background">
+        android:background="@drawable/light_to_dark_blue_green_gradient">
 
         <TextView
             android:id="@+id/tv_title"
             style="@style/TitleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="@string/your_objectives"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/img_btn_close"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0" />
+            app:layout_constraintTop_toTopOf="@id/img_btn_close" />
 
         <ImageButton
             android:id="@+id/img_btn_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:background="@android:color/transparent"
+            style="@style/ArrowBackButton"
             android:contentDescription="@string/close_app_button"
-            android:padding="5dp"
-            android:src="@drawable/ic_close"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_title" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/ll_income_content"
@@ -69,16 +62,17 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:layout_gravity="center"
         android:id="@+id/tv_without_items"
         style="@style/BlackSubTitleStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="20dp"
         android:elevation="20dp"
         android:text="@string/withtout_items"
         android:textAlignment="center"
         android:visibility="gone" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_bottom_sheet"

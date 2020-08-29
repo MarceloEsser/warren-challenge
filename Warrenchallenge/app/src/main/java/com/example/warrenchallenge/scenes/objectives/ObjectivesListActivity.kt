@@ -7,6 +7,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.example.warrenchallenge.R
 import com.example.warrenchallenge.adapter.ObjectivesAdapter
 import com.example.warrenchallenge.extensions.brazillianCurrency

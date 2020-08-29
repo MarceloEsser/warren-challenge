@@ -21,11 +21,11 @@ class SplashActivity : BaseActivity(R.layout.activity_splash) {
         GlobalScope.launch {
             delay(1500)
 
-            if (PreferencesManager(this@SplashActivity).accessToken != null) {
-                startActivity(Intent(this@SplashActivity, ObjectivesListActivity::class.java))
-            } else {
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-            }
+            startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+//            if (PreferencesManager(this@SplashActivity).accessToken != null) {
+//                startActivity(Intent(this@SplashActivity, ObjectivesListActivity::class.java))
+//            } else {
+//            }
             finish()
         }
 
