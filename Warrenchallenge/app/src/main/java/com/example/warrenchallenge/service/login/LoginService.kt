@@ -1,4 +1,4 @@
-    package com.example.warrenchallenge.service.login
+package com.example.warrenchallenge.service.login
 
 import com.example.warrenchallenge.model.login.LoginResponse
 import com.example.warrenchallenge.model.login.UserLogin
@@ -12,7 +12,7 @@ interface LoginServiceDelegate {
 }
 
 class LoginService(
-    private val mApi: ILoginAPI = ILoginAPI.api
+    private val mApi: ILoginAPI
 ) : LoginServiceDelegate {
 
     override suspend fun doLogin(userLogin: UserLogin): Flow<Resource<LoginResponse?>> {

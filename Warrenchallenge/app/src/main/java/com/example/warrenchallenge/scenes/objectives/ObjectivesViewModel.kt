@@ -1,5 +1,6 @@
 package com.example.warrenchallenge.scenes.objectives
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,34 +20,42 @@ class ObjectivesViewModel(
     private val preferences: PreferencesManager
 ) : ViewModel() {
 
-    val objectivesList: MutableLiveData<List<Objective>> = MutableLiveData()
-    val errorMessage: MutableLiveData<String> = MutableLiveData()
+    val _errorMessage: MutableLiveData<String> = MutableLiveData()
+
+    val errorMessage: LiveData<String>
+        get() = _errorMessage
 
     var totaIncome: Double = 0.0
     var hasObjectives: Boolean = false
 
-    fun loadObjectives() {
-        viewModelScope.launch(dispatcher.IO) {
-            service.getObjectives(preferences.accessToken ?: "").collect { resource ->
+    val objectives: LiveData<List<Objective>> by lazy {
+        val objectives = MutableLiveData<List<Objective>>()
 
-                if (hasObjectives(resource)) {
+        viewModelScope.launch {
+            loadObjectives(objectives)
+        }
 
-                    resource.data?.objectives?.forEach {
-                        totaIncome += it.totalBalance
-                    }
+        return@lazy objectives
+    }
 
-                    hasObjectives = true
-                    objectivesList.postValue(resource.data?.objectives)
+    private suspend fun loadObjectives(objectives: MutableLiveData<List<Objective>>) {
+        service.getObjectives(preferences.accessToken ?: "").collect { resource ->
+            if (hasObjectives(resource)) {
+
+                resource.data?.objectives?.forEach {
+                    totaIncome += it.totalBalance
                 }
 
-                if (requestFailed(resource)) {
-                    if (resource.message != null) {
-                        errorMessage.postValue(resource.message)
-                        objectivesList.postValue(listOf())
-                        hasObjectives = false
-                    }
-                }
+                hasObjectives = true
+                objectives.postValue(resource.data?.objectives)
+            }
 
+            if (requestFailed(resource)) {
+                if (resource.message != null) {
+                    _errorMessage.postValue(resource.message)
+                    objectives.postValue(listOf())
+                    hasObjectives = false
+                }
             }
         }
     }

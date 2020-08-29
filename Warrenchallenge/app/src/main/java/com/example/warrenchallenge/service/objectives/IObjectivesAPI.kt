@@ -13,18 +13,6 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 
 interface IObjectivesAPI {
-    companion object {
-
-        val api: IObjectivesAPI
-            get() = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(NetworkHandler.gsonBuilder()))
-                .baseUrl(BuildConfig.base_url)
-                .addCallAdapterFactory(CallAdapterFactory())
-                .client(NetworkHandler.httpClient())
-                .build()
-                .create(IObjectivesAPI::class.java)
-
-    }
 
     @GET("portfolios/mine")
     fun getObjectives(

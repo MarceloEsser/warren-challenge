@@ -11,7 +11,7 @@ interface ObjectivesServiceDelegate {
 }
 
 class ObjectivesService(
-    private val mApi: IObjectivesAPI = IObjectivesAPI.api,
+    private val mApi: IObjectivesAPI
 ) : ObjectivesServiceDelegate {
 
     override suspend fun getObjectives(accessToken: String): Flow<Resource<ObjectiveResponse?>> {

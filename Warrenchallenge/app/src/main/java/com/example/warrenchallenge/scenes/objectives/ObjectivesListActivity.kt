@@ -7,7 +7,6 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import com.example.warrenchallenge.R
 import com.example.warrenchallenge.adapter.ObjectivesAdapter
 import com.example.warrenchallenge.extensions.brazillianCurrency
@@ -28,11 +27,10 @@ class ObjectivesListActivity : BaseActivity(R.layout.activity_objectives) {
     private val viewModel: ObjectivesViewModel by viewModel()
 
     override fun onInitValues() {
+        showLoader()
+
         successConfiguration()
         errorConfiguration()
-
-        showLoader()
-        viewModel.loadObjectives()
 
         img_btn_close.setOnClickListener {
             finish()
@@ -44,14 +42,14 @@ class ObjectivesListActivity : BaseActivity(R.layout.activity_objectives) {
             screenSetup()
         }
 
-        viewModel.objectivesList.observe(activitContext, objectivesObserver)
+        viewModel.objectives.observe(activitContext, objectivesObserver)
     }
 
     private fun screenSetup() {
         tv_amount.text = viewModel.totaIncome.brazillianCurrency()
 
         if (viewModel.hasObjectives) {
-            configAdapter(viewModel.objectivesList.value ?: listOf())
+            configAdapter(viewModel.objectives.value ?: listOf())
             configBottomSheet()
         } else {
             tv_without_items.visibility = VISIBLE

@@ -14,19 +14,6 @@ import retrofit2.http.POST
 
 interface ILoginAPI {
 
-    companion object {
-
-        val api: ILoginAPI
-            get() = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(NetworkHandler.gsonBuilder()))
-                .baseUrl(BuildConfig.base_url)
-                .addCallAdapterFactory(CallAdapterFactory())
-                .client(NetworkHandler.httpClient())
-                .build()
-                .create(ILoginAPI::class.java)
-
-    }
-
     @POST("account/login")
     fun postLogin(
         @Body login: UserLogin
