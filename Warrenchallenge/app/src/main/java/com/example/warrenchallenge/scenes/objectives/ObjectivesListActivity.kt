@@ -1,13 +1,11 @@
 package com.example.warrenchallenge.scenes.objectives
 
-import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.Observer
 import com.example.warrenchallenge.R
 import com.example.warrenchallenge.adapter.ObjectivesAdapter
@@ -20,19 +18,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
 
-class ObjectivesListActivity : BaseActivity() {
+class ObjectivesListActivity : BaseActivity(R.layout.activity_objectives) {
 
     private lateinit var mBottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
-
-    private val viewModel: ObjectivesViewModel by viewModel()
-
     private lateinit var adapter: ObjectivesAdapter
     private val activitContext = this@ObjectivesListActivity
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_objectives)
+    private val viewModel: ObjectivesViewModel by viewModel()
 
+    override fun onInitValues() {
         successConfiguration()
         errorConfiguration()
 
@@ -42,7 +36,6 @@ class ObjectivesListActivity : BaseActivity() {
         img_btn_close.setOnClickListener {
             finish()
         }
-
     }
 
     private fun successConfiguration() {

@@ -7,13 +7,14 @@ import com.example.warrenchallenge.R
 import kotlinx.android.synthetic.main.dialog_error.*
 
 class ErrorDialog(
-    private var message: String? = "Unknown error",
-    private var title: String? = "Oops!",
-    private var action: () -> Unit = {}
-) : BaseDialog(layout = R.layout.dialog_error, width = ViewGroup.LayoutParams.MATCH_PARENT) {
+    private val message: String,
+    private val title: String,
+    private val action: () -> Unit = {}
+) : BaseDialog(layout = R.layout.dialog_error) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         tv_title.text = title
         tv_message.text = message
 

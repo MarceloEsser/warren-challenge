@@ -9,11 +9,7 @@ import androidx.fragment.app.DialogFragment
 
 
 abstract class BaseDialog(
-    private val layout: Int,
-    private val height: Int? = null,
-    private val width: Int? = null,
-    private val gravity: Int = Gravity.CENTER,
-    private val backgroundColor: Int = Color.TRANSPARENT
+    private val layout: Int
 ) : DialogFragment() {
 
     override fun onCreateView(
@@ -27,25 +23,22 @@ abstract class BaseDialog(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val onCreateDialog = super.onCreateDialog(savedInstanceState)
         setupDialog(onCreateDialog)
-        onCreateDialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
         return onCreateDialog
-    }
-
-
-    private fun setupDialog(dialog: Dialog?) {
-        dialog?.run {
-            if (height != null)
-                window?.attributes?.height = height
-            if (width != null)
-                window?.attributes?.width = width
-            window?.setGravity(gravity)
-            window?.setBackgroundDrawable(ColorDrawable(backgroundColor));
-        }
     }
 
     override fun onStart() {
         super.onStart()
         setupDialog(dialog)
     }
+
+    private fun setupDialog(dialog: Dialog?) {
+        dialog?.window?.apply {
+            attributes?.height = ViewGroup.LayoutParams.MATCH_PARENT
+            attributes?.width = ViewGroup.LayoutParams.MATCH_PARENT
+            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+            setGravity(Gravity.CENTER)
+        }
+    }
+
 
 }
