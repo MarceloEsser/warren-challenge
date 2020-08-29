@@ -11,9 +11,11 @@ import com.example.warrenchallenge.R
 import com.example.warrenchallenge.adapter.ObjectivesAdapter
 import com.example.warrenchallenge.extensions.brazillianCurrency
 import com.example.warrenchallenge.model.objective.Objective
+import com.example.warrenchallenge.model.objective.Portifolio
 import com.example.warrenchallenge.scenes.BaseActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.activity_objectives.*
+import kotlinx.android.synthetic.main.row_objective.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
@@ -39,33 +41,41 @@ class ObjectivesListActivity : BaseActivity(R.layout.activity_objectives) {
 
     private fun successConfiguration() {
         val objectivesObserver = Observer<List<Objective>> {
-            screenSetup()
+            configAdapter(it)
+            hideLoader()
         }
 
         viewModel.objectives.observe(activitContext, objectivesObserver)
+
+        portifolioObserver()
     }
 
-    private fun screenSetup() {
-        tv_amount.text = viewModel.totaIncome.brazillianCurrency()
-
-        if (viewModel.hasObjectives) {
-            configAdapter(viewModel.objectives.value ?: listOf())
-            configBottomSheet()
-        } else {
-            tv_without_items.visibility = VISIBLE
-            cl_bottom_sheet.visibility = GONE
+    private fun portifolioObserver() {
+        val portifolioObserver = Observer<Portifolio> {
+            tv_amount.text = it.totalIncome.brazillianCurrency()
+            if (it.hasObjectives) {
+                configBottomSheet()
+            } else {
+                errorLayoutSetup()
+            }
         }
 
-        hideLoader()
+        viewModel.portifolio.observe(this, portifolioObserver)
     }
 
     private fun errorConfiguration() {
         val errorMessageObserver = Observer<String> {
-            screenSetup()
+            errorLayoutSetup()
             showErrorDialog(message = it)
+            hideLoader()
         }
 
         viewModel.errorMessage.observe(this, errorMessageObserver)
+    }
+
+    private fun errorLayoutSetup() {
+        tv_without_items.visibility = VISIBLE
+        cl_bottom_sheet.visibility = GONE
     }
 
     private fun configAdapter(objectives: List<Objective>) {

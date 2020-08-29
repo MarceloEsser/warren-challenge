@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.warrenchallenge.model.objective.Objective
 import com.example.warrenchallenge.model.objective.ObjectiveResponse
+import com.example.warrenchallenge.model.objective.Portifolio
 import com.example.warrenchallenge.persistence.PreferencesManager
 import com.example.warrenchallenge.service.objectives.ObjectivesServiceDelegate
 import com.example.warrenchallenge.service.wrapper.resource.Resource
@@ -25,13 +26,15 @@ class ObjectivesViewModel(
     val errorMessage: LiveData<String>
         get() = _errorMessage
 
-    var totaIncome: Double = 0.0
-    var hasObjectives: Boolean = false
+    private val _portifolio = MutableLiveData<Portifolio>()
+
+    val portifolio: LiveData<Portifolio>
+        get() = _portifolio
 
     val objectives: LiveData<List<Objective>> by lazy {
         val objectives = MutableLiveData<List<Objective>>()
 
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher.IO) {
             loadObjectives(objectives)
         }
 
@@ -42,11 +45,12 @@ class ObjectivesViewModel(
         service.getObjectives(preferences.accessToken ?: "").collect { resource ->
             if (hasObjectives(resource)) {
 
-                resource.data?.objectives?.forEach {
-                    totaIncome += it.totalBalance
-                }
+                _portifolio.postValue(
+                    Portifolio(
+                        objectives = resource.data?.objectives ?: listOf()
+                    )
+                )
 
-                hasObjectives = true
                 objectives.postValue(resource.data?.objectives)
             }
 
@@ -54,7 +58,6 @@ class ObjectivesViewModel(
                 if (resource.message != null) {
                     _errorMessage.postValue(resource.message)
                     objectives.postValue(listOf())
-                    hasObjectives = false
                 }
             }
         }
