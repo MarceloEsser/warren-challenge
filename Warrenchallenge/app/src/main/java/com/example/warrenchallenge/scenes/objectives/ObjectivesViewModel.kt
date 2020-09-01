@@ -21,7 +21,7 @@ class ObjectivesViewModel(
     private val preferences: PreferencesManager
 ) : ViewModel() {
 
-    val _errorMessage: MutableLiveData<String> = MutableLiveData()
+    private val _errorMessage: MutableLiveData<String> = MutableLiveData()
 
     val errorMessage: LiveData<String>
         get() = _errorMessage
@@ -44,14 +44,9 @@ class ObjectivesViewModel(
     private suspend fun loadObjectives(objectives: MutableLiveData<List<Objective>>) {
         service.getObjectives(preferences.accessToken ?: "").collect { resource ->
             if (hasObjectives(resource)) {
-
-                _portifolio.postValue(
-                    Portifolio(
-                        objectives = resource.data?.objectives ?: listOf()
-                    )
-                )
-
                 objectives.postValue(resource.data?.objectives)
+
+                setupPortifolio(resource)
             }
 
             if (requestFailed(resource)) {
@@ -61,6 +56,21 @@ class ObjectivesViewModel(
                 }
             }
         }
+    }
+
+    private fun setupPortifolio(resource: Resource<ObjectiveResponse?>) {
+        var totalIncome = 0.0
+
+        resource.data?.objectives?.forEach {
+            totalIncome += it.totalBalance
+        }
+
+        _portifolio.postValue(
+            Portifolio(
+                totalIncome = totalIncome,
+                objectives = resource.data?.objectives ?: listOf()
+            )
+        )
     }
 
     private fun requestFailed(resource: Resource<ObjectiveResponse?>) =
