@@ -1,8 +1,7 @@
 package com.example.warrenchallenge.service.login
 
-import com.example.warrenchallenge.model.LoginResponse
-import com.example.warrenchallenge.model.UserLogin
-import com.example.warrenchallenge.service.NetworkHandler
+import com.example.warrenchallenge.model.login.LoginResponse
+import com.example.warrenchallenge.model.login.UserLogin
 import com.example.warrenchallenge.service.wrapper.resource.NetworkBoundResource
 import com.example.warrenchallenge.service.wrapper.resource.Resource
 import kotlinx.coroutines.flow.Flow
@@ -13,7 +12,7 @@ interface LoginServiceDelegate {
 }
 
 class LoginService(
-    private val mApi: ILoginAPI = ILoginAPI.api
+    private val mApi: ILoginAPI
 ) : LoginServiceDelegate {
 
     override suspend fun doLogin(userLogin: UserLogin): Flow<Resource<LoginResponse?>> {

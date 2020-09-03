@@ -1,23 +1,34 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:statusBarColor">#007c91</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/red</item>
     </style>
 
+    <style name="RowObjectiveStyle">
+        <item name="android:background">@drawable/background_transparent_ripple_white</item>
+        <item name="cardElevation">8dp</item>
+        <item name="cardCornerRadius">6dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>w
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+    </style>
 
-    <style name="TextInputEditTextStyle">
-        <item name="android:textCursorDrawable">@drawable/text_cursor_drawable</item>
-        <item name="android:layout_height">50dp</item>
+    <style name="TextInputEditTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:layout_height">60dp</item>
         <item name="android:background">@drawable/custom_text_field_drawable</item>
+        <item name="android:textCursorDrawable">@null</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="TextInputLayoutStyle">
+    <style name="TextInputLayoutStyle" parent="Widget.Design.TextInputLayout">
+        <item name="colorControlNormal">@color/white</item>
         <item name="hintTextColor">@color/white</item>
+        <item name="android:textCursorDrawable">@null</item>
         <item name="placeholderTextColor">@color/white</item>
         <item name="android:layout_marginStart">20dp</item>
         <item name="android:layout_marginEnd">20dp</item>
@@ -25,17 +36,54 @@
     </style>
 
     <style name="RedRoundedButton">
-        <item name="android:background">@drawable/login_button_background</item>
+        <item name="android:backgroundTint">@color/red</item>
         <item name="android:fontFamily">@font/balootammabold</item>
         <item name="android:textAllCaps">false</item>
+        <item name="rippleColor">@color/red_light</item>
+        <item name="cornerRadius">32dp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:elevation">8dp</item>
     </style>
 
     <style name="TitleStyle">
         <item name="android:fontFamily">@font/balootammabold</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">24sp</item>
     </style>
+
+    <style name="BlackTitleStyle">
+        <item name="android:fontFamily">@font/balootammabold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="MediumTitleStyle">
+        <item name="android:fontFamily">@font/balootammamedium</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="SubTitleStyle">
+        <item name="android:fontFamily">@font/balootammaegular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="BlackSubTitleStyle">
+        <item name="android:fontFamily">@font/balootammaegular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ArrowBackButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/background_transparent_ripple_white</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:src">@drawable/ic_arrow_back</item>
+    </style>
+
+
 </resources>
